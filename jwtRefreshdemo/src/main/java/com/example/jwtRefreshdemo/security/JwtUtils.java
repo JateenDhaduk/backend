@@ -1,12 +1,15 @@
 package com.example.jwtRefreshdemo.security;
 
 import com.example.jwtRefreshdemo.entity.UserEntity;
+import io.jsonwebtoken.io.Decoders;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import
-
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.security.Keys;
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +18,7 @@ import java.util.UUID;
 import java.util.function.Function;
 
 @Component
+@Getter
 public class JwtUtils {
 
     @Value("${jwt.secret}")
@@ -45,7 +49,7 @@ public class JwtUtils {
 
     }
 
-    public String buildRefreshToken(String email){
+    public String buildRefreshToken(String username){
         String refreshToken = UUID.randomUUID().toString();
         return refreshToken;
     }
@@ -72,7 +76,7 @@ public class JwtUtils {
     }
 
     public boolean isTokenExpired(String accessToken){
-        return return extractExpiration(accessToken).before(new Date());
+        return extractExpiration(accessToken).before(new Date());
     }
 
     private Date extractExpiration(String accessToken) {
