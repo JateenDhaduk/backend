@@ -600,5 +600,3 @@ curl http://localhost:3000/dashboard \
 Each demo's `README.md` includes the curl commands, what to observe in the network tab, and a **"Break It On Purpose"** section — tamper with the JWT signature, send an expired token, or try to access an admin route as a regular user.
 
 ---
-
-> **Next module:** [Module 05 — Databases](../05-databases/) — your authentication system stores users somewhere. Next we look at how data gets persisted, queried, and managed reliably.
